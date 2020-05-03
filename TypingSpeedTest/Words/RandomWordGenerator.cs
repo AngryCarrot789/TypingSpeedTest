@@ -13,7 +13,7 @@ namespace TypingSpeedTest.Words
 
         public static string RandomWord()
         {
-            string path = Path.Combine(GetFolderPath(SpecialFolder.MyDocuments), "EnglishWords.txt");
+            string path = Path.Combine(GetFolderPath(SpecialFolder.MyDocuments), "PLACE_IN_YOUR_DOCUMENTS", "EnglishWords.txt");
             string[] lines = File.ReadAllLines(path);
             return lines[RandomNumbers.Next(0, lines.Length - 1)].ToLower();
         }
