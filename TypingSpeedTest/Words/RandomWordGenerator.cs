@@ -5,17 +5,22 @@ namespace TypingSpeedTest.Words
 {
     public static class RandomWordGenerator
     {
-        private static readonly Random RandomNumbers;
+        private static string[] EnglishWords { get; set; }
+        private static Random RandomNumbers { get; set; }
         static RandomWordGenerator()
         {
             RandomNumbers = new Random();
+            EnglishWords = 
+                File.ReadAllLines(
+                    Path.Combine(
+                        GetFolderPath(SpecialFolder.MyDocuments),
+                        "PLACE_IN_YOUR_DOCUMENTS",
+                        "EnglishWords.txt"));
         }
 
         public static string RandomWord()
         {
-            string path = Path.Combine(GetFolderPath(SpecialFolder.MyDocuments), "PLACE_IN_YOUR_DOCUMENTS", "EnglishWords.txt");
-            string[] lines = File.ReadAllLines(path);
-            return lines[RandomNumbers.Next(0, lines.Length - 1)].ToLower();
+            return EnglishWords[RandomNumbers.Next(0, EnglishWords.Length - 1)].ToLower();
         }
     }
 }

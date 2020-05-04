@@ -3,60 +3,39 @@ using System.Windows.Input;
 
 namespace TypingSpeedTest.Utilities
 {
-    public class CommandParam : ICommand
+    public class CommandParam<T> : ICommand
     {
-        #region Fields
+        private readonly Func<T, bool> canExecute;
+        private readonly Action<T> execute;
 
-        readonly Action<object> _execute;
-        readonly Predicate<object> _canExecute;
-
-        #endregion // Fields
-
-        #region Constructors
-
-        /// <summary>
-        /// Creates a new command that can always execute.
-        /// </summary>
-        /// <param name="execute">The execution logic.</param>
-        public CommandParam(Action<object> execute) : this(execute, null)
+        public CommandParam(Action<T> execute, Func<T, bool> canExecute = null)
         {
+            this.execute = execute;
+            this.canExecute = canExecute;
         }
-
-        /// <summary>
-        /// Creates a new command.
-        /// </summary>
-        /// <param name="execute">The execution logic.</param>
-        /// <param name="canExecute">The execution status logic.</param>
-        public CommandParam(Action<object> execute, Predicate<object> canExecute)
-        {
-            if (execute == null)
-                throw new ArgumentNullException("execute");
-
-            _execute = execute;
-            _canExecute = canExecute;
-        }
-
-        #endregion // Constructors
-
-        #region ICommand Members
-
 
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute(parameter);
-        }
+            if (parameter is T typedParameter)
+            {
+                return canExecute?.Invoke(typedParameter) ?? true;
+            }
 
-        public event EventHandler CanExecuteChanged
-        {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            return false;
         }
 
         public void Execute(object parameter)
         {
-            _execute(parameter);
+            if (parameter is T typedParameter)
+            {
+                execute?.Invoke(typedParameter);
+            }
         }
 
-        #endregion // ICommand Members
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
     }
 }

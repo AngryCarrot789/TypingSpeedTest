@@ -65,6 +65,8 @@
     <Compile Include="Utilities\TypeExtensions.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ScoreCounterViewModel.cs" />
+    <Compile Include="ViewModels\TimerViewModel.cs" />
+    <Compile Include="ViewModels\WordsPresenterViewModel.cs" />
     <Compile Include="Words\RandomWordGenerator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="PLACE_IN_YOUR_DOCUMENTS\EnglishWords.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
