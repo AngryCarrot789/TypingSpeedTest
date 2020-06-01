@@ -17,6 +17,7 @@ namespace TypingSpeedTest.ViewModels
             get => _correctScore;
             set => RaisePropertyChanged(ref _correctScore, value);
         }
+
         public int IncorrectScore
         {
             get => _incorrectScore;

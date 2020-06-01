@@ -112,7 +112,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="PLACE_IN_YOUR_DOCUMENTS\EnglishWords.txt" />
+    <Resource Include="Words\EnglishWords.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converter\" />

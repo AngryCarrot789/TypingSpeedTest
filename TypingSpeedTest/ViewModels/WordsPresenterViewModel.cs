@@ -8,14 +8,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using TypingSpeedTest.Utilities;
 using TypingSpeedTest.Words;
-
+// shut it. i dont actually care
+using Colour = System.String;
 namespace TypingSpeedTest.ViewModels
 {
     public class WordsPresenterViewModel : BaseViewModel
     {
         #region Private Fields
 
-        private string _foregroundColour;
+        private Colour _foregroundColour;
         private string _inputWord;
         private string _selectedWord;
         private int _selectedWordIndex;
@@ -24,7 +25,7 @@ namespace TypingSpeedTest.ViewModels
 
         #region Public Fields
 
-        public string InputWordForeground
+        public Colour InputWordForeground
         {
             get => _foregroundColour;
             set => RaisePropertyChanged(ref _foregroundColour, value);
@@ -32,7 +33,11 @@ namespace TypingSpeedTest.ViewModels
         public string InputWord
         {
             get => _inputWord;
-            set => RaisePropertyChanged(ref _inputWord, value, InputWordTextChanged);
+            set => RaisePropertyChanged(ref _inputWord, value, ()=>
+            {
+                value = value.Trim();
+                InputWordTextChanged();
+            });
         }
         public string SelectedWord
         {

@@ -44,16 +44,15 @@ namespace TypingSpeedTest.ViewModels
             NewWordTimer.Tick += NewWordTimer_Tick;
             NewWordTimer.Start();
         }
-
-        private void NewWordTimer_Tick(object sender, EventArgs e)
-        {
-            WordsPresenter.AddNewRandomWord();
-        }
-
         public void SetNewWordTimerInterval(double value)
         {
             if (NewWordTimer != null)
                 NewWordTimer.Interval = TimeSpan.FromSeconds(value);
+        }
+
+        private void NewWordTimer_Tick(object sender, EventArgs e)
+        {
+            WordsPresenter.AddNewRandomWord();
         }
     }
 }

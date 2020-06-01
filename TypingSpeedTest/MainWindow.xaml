@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:TypingSpeedTest"
         xmlns:ViewModels="clr-namespace:TypingSpeedTest.ViewModels"
         mc:Ignorable="d" 
-        Title="Type speed test" Height="621" Width="1024"
+        Title="Type speed test" MinHeight="600" Height="620" Width="900" MinWidth="500"
         Style="{DynamicResource CustomWindowStyle}">
     <Window.DataContext>
         <ViewModels:MainViewModel/>
@@ -69,6 +69,7 @@
                  Margin="10,0,10,10"
                  Height="60" AcceptsReturn="False">
                 <TextBox.InputBindings>
+                    <KeyBinding Key="Space" Command="{Binding CheckWordCommand}"/>
                     <KeyBinding Key="Enter" Command="{Binding CheckWordCommand}"/>
                     <KeyBinding Key="Up" Command="{Binding MoveWordIndexCommand}" CommandParameter="{DynamicResource 1}"/>
                     <KeyBinding Key="Down" Command="{Binding MoveWordIndexCommand}" CommandParameter="{DynamicResource 0}"/>
@@ -127,10 +128,10 @@
                 <Button Content="Clear Words List" Height="40" Command="{Binding WordsPresenter.ClearWordsListCommand}" FontSize="20"/>
                 <Separator Margin="0 5 0 5"/>
                 <TextBlock FontFamily="consolas" Text="Shortcuts:"/>
-                <TextBlock FontFamily="consolas" Text="Up/Down  - List Index Up/Down"/>
-                <TextBlock FontFamily="consolas" Text="CTRL + S - Skip selected word"/>
-                <TextBlock FontFamily="consolas" Text="CTRL + D - Set List Index-> 0"/>
-                <TextBlock FontFamily="consolas" Text="Enter    - Check word"/>
+                <TextBlock FontFamily="consolas" Text="Up/Down     - index Up/Down"/>
+                <TextBlock FontFamily="consolas" Text="CTRL + D    - Index to 0"/>
+                <TextBlock FontFamily="consolas" Text="CTRL + S    - Skip Word"/>
+                <TextBlock FontFamily="consolas" Text="Enter/Space - Check word"/>
             </StackPanel>
             <Grid DataContext="{Binding WordsPresenter.ScoreCounter}" VerticalAlignment="Top" Height="34" Margin="0,469,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
